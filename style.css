@@ -601,6 +601,89 @@ footer p {
 }
 
 /* =========================================
+   Experience / Timeline Section
+   ========================================= */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: var(--glass-border);
+    top: 0;
+    bottom: 0;
+    left: 20px;
+}
+
+.timeline-item {
+    padding: 10px 0 30px 50px;
+    position: relative;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 50%;
+    left: 13px;
+    top: 15px;
+    z-index: 1;
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.timeline-content {
+    padding: 25px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.timeline-content .date {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(0, 136, 255, 0.1);
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.timeline-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.timeline-content h4 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.experience-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.experience-list li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.experience-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================
    Animations & Media Queries
    ========================================= */
 .fade-in-up {

@@ -51,7 +51,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Reveal Elements on Scroll
-const revealElements = document.querySelectorAll('.skill-card, .project-card, .stat-box, .info-item, .contact-form');
+const revealElements = document.querySelectorAll('.skill-card, .project-card, .stat-box, .info-item, .contact-form, .timeline-item');
 
 const revealCallback = (entries, observer) => {
     entries.forEach(entry => {
