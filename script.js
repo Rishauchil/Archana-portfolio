@@ -1,102 +1,386 @@
-// Mobile Menu Toggle
-const menuIcon = document.getElementById('menu-icon');
-const navLinks = document.querySelector('.nav-links');
+/* =============================================
+   PREMIUM CIVIL ENGINEER PORTFOLIO — JS
+   Archana Sivan Pillai | 8+ Years Experience
+   ============================================= */
 
-menuIcon.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    // Toggle icon between bars and times
-    const icon = menuIcon.querySelector('i');
-    if (navLinks.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-xmark');
-    } else {
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars');
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all components
+    initPageLoader();
+    initCustomCursor();
+    initMobileMenu();
+    initNavbarScroll();
+    initScrollReveal();
+    initStatsCounter();
+    initParticlesCanvas();
+    initContactForm();
 });
 
-// Close mobile menu when a link is clicked
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const icon = menuIcon.querySelector('i');
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars');
-    });
-});
+/**
+ * 1. PAGE LOADER
+ */
+function initPageLoader() {
+    const loader = document.getElementById('page-loader');
+    if (!loader) return;
 
-// Sticky Navbar Background on Scroll
-const navbar = document.getElementById('navbar');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// Smooth Scrolling for Anchor Links (Handled by CSS, but good fallback/enhancement here)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Reveal Elements on Scroll
-const revealElements = document.querySelectorAll('.skill-card, .project-card, .stat-box, .info-item, .contact-form, .timeline-item');
-
-const revealCallback = (entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-        }
-    });
-};
-
-const revealOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
-};
-
-const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-
-revealElements.forEach(el => {
-    // Set initial state for elements
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-    revealObserver.observe(el);
-});
-
-// Form Submission Prevention (Mock)
-document.querySelector('.contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = e.target.querySelector('button');
-    const originalText = btn.innerText;
-    
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-    btn.style.opacity = '0.8';
-    
-    // Mock API call delay
-    setTimeout(() => {
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent';
-        btn.style.background = '#10b981'; // Green color
-        btn.style.opacity = '1';
-        e.target.reset();
-        
+    window.addEventListener('load', () => {
         setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.style.background = '';
-        }, 3000);
-    }, 1500);
-});
+            loader.classList.add('loaded');
+        }, 1200); // Allow loader progress animation to complete first
+    });
+
+    // Fallback if window load takes too long
+    setTimeout(() => {
+        loader.classList.add('loaded');
+    }, 4000);
+}
+
+/**
+ * 2. CUSTOM CURSOR
+ */
+function initCustomCursor() {
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    let isHovering = false;
+
+    // Track mouse position
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Immediate position for dot
+        dot.style.left = `${mouseX}px`;
+        dot.style.top = `${mouseY}px`;
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+    });
+
+    // Ring smooth tracking (Lerp)
+    function updateRing() {
+        // Linear interpolation formula: current + (target - current) * ease
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+
+        ring.style.left = `${ringX}px`;
+        ring.style.top = `${ringY}px`;
+
+        requestAnimationFrame(updateRing);
+    }
+    updateRing();
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        dot.style.opacity = '0';
+        ring.style.opacity = '0';
+    });
+
+    // Hover states for interactive elements
+    const interactives = document.querySelectorAll('a, button, input, textarea, .menu-icon, .tl-card, .skill-card, .project-card, .cred-card');
+    interactives.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            ring.classList.add('cursor-hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            ring.classList.remove('cursor-hover');
+        });
+    });
+
+    // Hide custom cursor on mobile/touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        dot.style.display = 'none';
+        ring.style.display = 'none';
+        document.body.style.cursor = 'auto';
+    }
+}
+
+/**
+ * 3. MOBILE MENU
+ */
+function initMobileMenu() {
+    const menuIcon = document.getElementById('menu-icon');
+    const navLinks = document.getElementById('nav-links');
+    if (!menuIcon || !navLinks) return;
+
+    menuIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuIcon.classList.toggle('open');
+        navLinks.classList.toggle('open');
+    });
+
+    // Close menu when a link is clicked
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            menuIcon.classList.remove('open');
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuIcon.contains(e.target)) {
+            menuIcon.classList.remove('open');
+            navLinks.classList.remove('open');
+        }
+    });
+}
+
+/**
+ * 4. STICKY NAVBAR SCROLL & BACK TO TOP BUTTON
+ */
+function initNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+
+        // Sticky Navbar
+        if (scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Back to top visibility
+        if (backToTop) {
+            if (scrollY > 600) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+    });
+
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
+
+/**
+ * 5. SCROLL REVEAL (Intersection Observer)
+ */
+function initScrollReveal() {
+    const revealTargets = document.querySelectorAll(
+        '.reveal-up, .reveal-left, .reveal-right, .skill-card'
+    );
+
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Trigger counter function if this item has counter inside
+                const counters = entry.target.querySelectorAll('.counter');
+                if (counters.length > 0) {
+                    counters.forEach(c => animateCounter(c));
+                }
+                obs.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    revealTargets.forEach(target => {
+        observer.observe(target);
+    });
+}
+
+/**
+ * 6. STATS COUNTER ANIMATION
+ */
+function animateCounter(counterElement) {
+    if (counterElement.classList.contains('counted')) return;
+    counterElement.classList.add('counted');
+
+    const target = parseInt(counterElement.getAttribute('data-target'), 10) || 0;
+    const duration = 2000; // 2 seconds
+    const startTime = performance.now();
+
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function (easeOutQuad)
+        const easedProgress = progress * (2 - progress);
+        
+        const currentValue = Math.floor(easedProgress * target);
+        counterElement.textContent = currentValue;
+
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            counterElement.textContent = target;
+        }
+    }
+
+    requestAnimationFrame(updateCounter);
+}
+
+function initStatsCounter() {
+    // Trigger counters inside hero section immediately (no observer needed)
+    const heroStats = document.querySelectorAll('.hstat-num');
+    setTimeout(() => {
+        heroStats.forEach(stat => animateCounter(stat));
+    }, 1500); // Start after loader fades out
+}
+
+/**
+ * 7. PARTICLES CANVAS (Engineering Grid/Structure Theme)
+ */
+function initParticlesCanvas() {
+    const canvas = document.getElementById('particles-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = canvas.offsetWidth);
+    let height = (canvas.height = canvas.offsetHeight);
+
+    const particles = [];
+    const maxParticles = 60;
+    const connectionDist = 120;
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.4;
+            this.vy = (Math.random() - 0.5) * 0.4;
+            this.r = Math.random() * 2 + 1;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce off edges
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(59, 130, 246, 0.4)';
+            ctx.fill();
+        }
+    }
+
+    // Populate particles
+    for (let i = 0; i < maxParticles; i++) {
+        particles.push(new Particle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Update and draw particles
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+
+        // Draw connections (structural lattice look)
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < connectionDist) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    // Fade lines out as they get further apart
+                    const alpha = (1 - dist / connectionDist) * 0.15;
+                    ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Resize listener
+    window.addEventListener('resize', () => {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+    });
+}
+
+/**
+ * 8. CONTACT FORM WITH FLOATING/GLOW LABELS & VALIDATION
+ */
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('form-success');
+    const submitBtn = document.getElementById('submit-btn');
+    if (!form || !successMsg || !submitBtn) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Perform basic validation
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        let isValid = true;
+
+        [nameInput, emailInput, messageInput].forEach(input => {
+            if (!input.value.trim()) {
+                input.style.borderColor = '#ef4444'; // Red alert border
+                isValid = false;
+            } else {
+                input.style.borderColor = '';
+            }
+        });
+
+        if (!isValid) return;
+
+        // Animate button to sending state
+        const originalText = submitBtn.querySelector('.btn-text').innerText;
+        submitBtn.querySelector('.btn-text').innerText = 'Sending message...';
+        submitBtn.querySelector('.btn-icon').innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+        submitBtn.style.opacity = '0.85';
+        submitBtn.style.pointerEvents = 'none';
+
+        // Mock network delay
+        setTimeout(() => {
+            // Restore button but with success check mark
+            submitBtn.style.opacity = '1';
+            submitBtn.style.pointerEvents = 'all';
+            submitBtn.classList.add('success');
+            submitBtn.querySelector('.btn-text').innerText = 'Sent Successfully';
+            submitBtn.querySelector('.btn-icon').innerHTML = '<i class="fa-solid fa-check"></i>';
+            
+            // Show Success Notification Panel
+            successMsg.classList.add('show');
+            form.reset();
+
+            // Clear success states after 4 seconds
+            setTimeout(() => {
+                submitBtn.classList.remove('success');
+                submitBtn.querySelector('.btn-text').innerText = originalText;
+                submitBtn.querySelector('.btn-icon').innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
+                successMsg.classList.remove('show');
+            }, 4000);
+
+        }, 1800);
+    });
+}

@@ -3,302 +3,642 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archana Sivan Pillai - Civil Engineer Portfolio</title>
-    <meta name="description" content="Professional portfolio of Archana Sivan Pillai, a Civil Engineer showcasing structural designs, projects, and core skills.">
-    
+    <title>Archana Sivan Pillai | Civil Engineer — Portfolio</title>
+    <meta name="description" content="Portfolio of Archana Sivan Pillai, a Civil Engineer with 8+ years of experience in Project Coordination, Survey Engineering, and Construction Management across UAE and India.">
+    <meta name="keywords" content="Civil Engineer, Project Coordinator, Survey Engineer, Dubai, Al Quoz, AutoCAD, Monday.com, Construction Management">
+    <meta property="og:title" content="Archana Sivan Pillai | Civil Engineer">
+    <meta property="og:description" content="8+ years of civil engineering and survey coordination excellence in UAE and India.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- Loader -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-inner">
+            <div class="loader-logo"><i class="fa-solid fa-compass-drafting"></i></div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <i class="fa-solid fa-compass-drafting"></i> <span>Archana.Portfolio</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact" class="btn-primary-outline">Contact</a></li>
+            <a href="#hero" class="logo">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <span>Archana<em>.eng</em></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#skills" class="nav-link">Expertise</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-cta">Let's Connect <i class="fa-solid fa-arrow-right"></i></a></li>
             </ul>
             <div class="menu-icon" id="menu-icon">
-                <i class="fa-solid fa-bars"></i>
+                <span></span><span></span><span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ===== HERO SECTION ===== -->
     <section id="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-bg-wrap">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <canvas id="particles-canvas"></canvas>
+        </div>
         <div class="hero-content">
-            <h1 class="fade-in-up">Building the Future, <br><span>One Structure at a Time.</span></h1>
-            <p class="fade-in-up delay-1">Professional Civil Engineer specializing in structural integrity, innovative design, and sustainable infrastructure.</p>
-            <div class="hero-buttons fade-in-up delay-2">
-                <a href="#projects" class="btn-primary">View Projects</a>
+            <div class="hero-badge reveal-badge">
+                <span class="badge-dot"></span>
+                <span>Available for new opportunities · Al Quoz, Dubai, UAE</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line fade-up" style="--delay: 0.1s">Building the</span>
+                <span class="title-line gradient-text fade-up" style="--delay: 0.25s">Future of</span>
+                <span class="title-line fade-up" style="--delay: 0.4s">Infrastructure</span>
+            </h1>
+            <p class="hero-subtitle fade-up" style="--delay: 0.6s">
+                Civil Engineer · <strong>8+ Years</strong> of experience in Project Coordination, <br>
+                Survey Engineering &amp; Construction Management across UAE &amp; India.
+            </p>
+            <div class="hero-actions fade-up" style="--delay: 0.8s">
+                <a href="#projects" class="btn-hero-primary">
+                    <span>View My Work</span>
+                    <i class="fa-solid fa-arrow-down-long"></i>
+                </a>
+                <a href="#contact" class="btn-hero-ghost">
+                    <span>Hire Me</span>
+                </a>
+            </div>
+            <div class="hero-stats fade-up" style="--delay: 1s">
+                <div class="hstat"><span class="hstat-num" data-target="8">0</span><span>+</span><small>Years Exp</small></div>
+                <div class="hstat-divider"></div>
+                <div class="hstat"><span class="hstat-num" data-target="35">0</span><span>+</span><small>Projects</small></div>
+                <div class="hstat-divider"></div>
+                <div class="hstat"><span class="hstat-num" data-target="2">0</span><span></span><small>Countries</small></div>
             </div>
         </div>
+        <a href="#about" class="hero-scroll-indicator" aria-label="Scroll down">
+            <span>Scroll</span>
+            <div class="scroll-icon"><div class="scroll-dot"></div></div>
+        </a>
     </section>
 
-    <!-- About Section -->
+    <!-- ===== ABOUT SECTION ===== -->
     <section id="about" class="section">
         <div class="container">
-            <div class="section-title">
-                <h2>About Me</h2>
-                <div class="line"></div>
+            <div class="about-grid">
+                <div class="about-image-col reveal-left">
+                    <div class="about-img-frame">
+                        <img src="assets/my_photo.jpeg" alt="Archana Sivan Pillai - Civil Engineer">
+                        <div class="img-decoration img-dec-1"></div>
+                        <div class="img-decoration img-dec-2"></div>
+                        <div class="img-badge">
+                            <i class="fa-solid fa-award"></i>
+                            <span>8+ Years of<br>Excellence</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text-col reveal-right">
+                    <div class="section-tag">Professional Profile</div>
+                    <h2 class="section-heading">Archana Sivan Pillai</h2>
+                    <p class="about-role">Civil Engineer &amp; Project Coordinator</p>
+                    <p class="about-desc">
+                        A versatile, detail-oriented Civil Engineer with <strong>8+ years of experience</strong> in Project Coordination, Survey Engineering, and Construction Management across UAE and India.
+                    </p>
+                    <p class="about-desc">
+                        Expertise spans end-to-end project execution including survey operations, construction supervision, project scheduling, cost control, documentation, and regulatory approvals. By combining analytical rigor with strong organizational leadership, I bridge the gap between technical design and on-site execution to consistently deliver resilient, high-quality projects on schedule.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Comprehensive permits &amp; regulatory coordination support</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>100% compliance with Dubai Municipality systems (ECM)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Proficient in AutoCAD, Monday.com, MS Excel &amp; Office Suite</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Fluent in English, Malayalam, Hindi &amp; Intermediate Tamil</span>
+                        </div>
+                    </div>
+                    <div class="about-actions">
+                        <a href="#contact" class="btn-primary">Get In Touch</a>
+                        <a href="mailto:archanasivan97@outlook.com" class="btn-outline">
+                            <i class="fa-regular fa-envelope"></i> Email Me
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am a versatile and detail-oriented Civil Engineer with over 7 years of multifaceted experience spanning project coordination, site management, and technical drafting. My career has been defined by a commitment to operational excellence, whether I am directing daily construction activities, coordinating complex surveys with local municipalities, or developing rigorous document control and safety protocols.</p>
-                    <p>By combining analytical rigor with strong organizational leadership, I bridge the gap between technical design and on-site execution to consistently deliver resilient, high-quality projects on schedule.</p>
-                    <div class="stats">
-                        <div class="stat-box">
-                            <h3>7+</h3>
-                            <p>Years Experience</p>
-                        </div>
-                        <div class="stat-box">
-                            <h3>30+</h3>
-                            <p>Projects Managed</p>
-                        </div>
-                        <div class="stat-box">
-                            <h3>100%</h3>
-                            <p>Safety Record</p>
-                        </div>
+
+            <!-- Key Metrics Strip -->
+            <div class="metrics-strip">
+                <div class="metric-item reveal-up" style="--delay: 0s">
+                    <div class="metric-icon"><i class="fa-solid fa-building"></i></div>
+                    <div class="metric-info">
+                        <span class="metric-num counter" data-target="8">0</span><span class="metric-suffix">+</span>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+                <div class="metric-item reveal-up" style="--delay: 0.1s">
+                    <div class="metric-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                    <div class="metric-info">
+                        <span class="metric-num counter" data-target="35">0</span><span class="metric-suffix">+</span>
+                        <p>Projects Managed</p>
+                    </div>
+                </div>
+                <div class="metric-item reveal-up" style="--delay: 0.2s">
+                    <div class="metric-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="metric-info">
+                        <span class="metric-num counter" data-target="100">0</span><span class="metric-suffix">%</span>
+                        <p>Safety &amp; Compliance</p>
+                    </div>
+                </div>
+                <div class="metric-item reveal-up" style="--delay: 0.3s">
+                    <div class="metric-icon"><i class="fa-solid fa-globe"></i></div>
+                    <div class="metric-info">
+                        <span class="metric-num counter" data-target="2">0</span><span class="metric-suffix"></span>
+                        <p>Countries Active</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Client Collaborations -->
+            <div class="clients-strip reveal-up" style="--delay: 0.2s">
+                <h3 class="clients-title">Key Client Collaborations</h3>
+                <div class="clients-grid-strip">
+                    <div class="client-badge">
+                        <i class="fa-solid fa-anchor"></i>
+                        <span>AD Ports Group</span>
+                    </div>
+                    <div class="client-badge">
+                        <i class="fa-solid fa-city"></i>
+                        <span>Dubai Holding</span>
+                    </div>
+                    <div class="client-badge">
+                        <i class="fa-solid fa-building-user"></i>
+                        <span>Sobha Realty</span>
+                    </div>
+                    <div class="client-badge">
+                        <i class="fa-solid fa-mask"></i>
+                        <span>Ethara</span>
+                    </div>
+                    <div class="client-badge">
+                        <i class="fa-solid fa-hard-hat"></i>
+                        <span>ARCCO</span>
+                    </div>
+                    <div class="client-badge">
+                        <i class="fa-solid fa-trowel-bricks"></i>
+                        <span>Ducto</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- ===== EXPERIENCE SECTION ===== -->
     <section id="experience" class="section dark-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Work Experience</h2>
-                <div class="line"></div>
+            <div class="section-header">
+                <div class="section-tag">Career Journey</div>
+                <h2 class="section-heading">Work Experience</h2>
+                <p class="section-subheading">A proven record of structural supervision and coordination milestones.</p>
             </div>
             <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass">
-                        <span class="date">March 2025 - Present</span>
-                        <h3>Project Coordinator cum Project Engineer</h3>
-                        <h4>Falcon Survey Engineering Consultants - Dubai</h4>
-                        <ul class="experience-list">
-                            <li>Directed daily project operations by bridging communication between on-site field teams and office personnel to consistently meet strict project deadlines.</li>
-                            <li>Authored and managed comprehensive project quotations, ensuring high accuracy and timely submissions to secure client contracts.</li>
-                            <li>Spearheaded end-to-end client correspondence, managing quotation follow-ups, payment processing, and dispute resolution to maintain strong client relationships.</li>
-                            <li>Prepared detailed survey reports, including gate-level fixing and control point establishment, ensuring all structural documentation met regulatory standards.</li>
-                            <li>Navigated the ECM to seamlessly handle complex permit applications and critical project approvals.</li>
-                            <li>Coordinated extensively with the Dubai Municipality to obtain critical survey control points, ensuring 100% compliance with local government regulations and standards.</li>
-                            <li>Streamlined financial operations by issuing precise invoices and maintaining rigorous statements of accounts.</li>
+                <!-- Experience 1 -->
+                <div class="timeline-item reveal-up" style="--delay: 0s">
+                    <div class="tl-marker">
+                        <div class="tl-dot"><i class="fa-solid fa-briefcase"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card glass-card">
+                        <div class="tl-card-header">
+                            <div>
+                                <span class="tl-date"><i class="fa-regular fa-calendar"></i> 03/2025 – Present</span>
+                                <h3>Project Coordinator Cum Project Engineer</h3>
+                                <h4><i class="fa-solid fa-location-dot"></i> Falcon Survey Engineering Consultants · Dubai, UAE</h4>
+                            </div>
+                            <div class="tl-tag current">Current</div>
+                        </div>
+                        <ul class="tl-bullets">
+                            <li>Managed end-to-end survey project execution from enquiry stage to final delivery, ensuring timely completion and client satisfaction.</li>
+                            <li>Coordinated project scheduling, survey team mobilization, and site activities across multiple ongoing projects.</li>
+                            <li>Handled client communication, project updates, and official correspondence with consultants, contractors, and stakeholders.</li>
+                            <li>Coordinated survey operations for key clients including **AD Ports Group**, **Ethara**, **Dubai Holding**, **ARCCO**, **Ducto**, and **Sobha Realty**.</li>
+                            <li>Processed permits and approvals through ECM system and Dubai Municipality platforms, ensuring regulatory compliance.</li>
+                            <li>Coordinated with Dubai Municipality for control point establishment and survey-related approvals.</li>
+                            <li>Prepared technical and commercial quotations for project proposals and client requirements.</li>
+                            <li>Prepared detailed survey reports including Topographic Surveys, Demarcation Surveys, Gate Level Surveys, and Control Point Establishment Reports.</li>
+                            <li>Maintained project documentation, tracking, and reporting using **Monday.com** project management system.</li>
+                            <li>Prepared invoices, statements of accounts, and followed up on payments to ensure timely collection.</li>
+                            <li>Delivered complete project coordination support including documentation, reporting, approvals, and final project closure.</li>
                         </ul>
+                        <div class="tl-tags">
+                            <span>Project Coordination</span><span>Survey Engineering</span><span>Dubai Municipality</span><span>ECM System</span><span>Monday.com</span><span>Stakeholder Relations</span>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass">
-                        <span class="date">January 2023 - February 2025</span>
-                        <h3>Office Manager</h3>
-                        <h4>Al Ayadi Technical Services LLC - Dubai</h4>
-                        <ul class="experience-list">
-                            <li>Engineered a robust tracking system for customer inquiries, drastically reducing response times and elevating overall client satisfaction.</li>
-                            <li>Developed and instituted a rigorous document control system, significantly improving data accuracy and ensuring strict compliance with industry regulations.</li>
-                            <li>Directed all administrative and financial tracking, including precise payroll calculations, overtime reporting, and meticulous daily attendance logging.</li>
-                            <li>Orchestrated corporate events of all scales, ranging from routine staff assemblies to comprehensive large-scale conferences.</li>
-                            <li>Managed accounts receivable proactively by driving client payment follow-ups and guaranteeing timely collections.</li>
+
+                <!-- Experience 2 -->
+                <div class="timeline-item reveal-up" style="--delay: 0.1s">
+                    <div class="tl-marker">
+                        <div class="tl-dot"><i class="fa-solid fa-building"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card glass-card">
+                        <div class="tl-card-header">
+                            <div>
+                                <span class="tl-date"><i class="fa-regular fa-calendar"></i> 01/2023 – 02/2025</span>
+                                <h3>Office Manager</h3>
+                                <h4><i class="fa-solid fa-location-dot"></i> Al Ayadi Technical Services LLC · Dubai, UAE</h4>
+                            </div>
+                        </div>
+                        <ul class="tl-bullets">
+                            <li>Managed daily office operations and coordinated communication between clients, suppliers, internal departments, and project teams to ensure smooth business workflow.</li>
+                            <li>Handled end-to-end administrative functions including document control, record management, reporting, and preparation of invoices, contracts, and official correspondence.</li>
+                            <li>Supported project teams with documentation, scheduling, meeting coordination, and management review organization.</li>
+                            <li>Managed customer service operations, addressed client inquiries, and ensured timely resolution of issues and requests.</li>
+                            <li>Maintained financial and operational tracking including attendance records, overtime calculations, payment follow-ups, and collection coordination.</li>
+                            <li>Ensured accurate business record-keeping and prepared periodic operational reports to support management decision-making.</li>
                         </ul>
+                        <div class="tl-tags">
+                            <span>Office Management</span><span>Document Control</span><span>Financial Tracking</span><span>Administrative Operations</span><span>Operational Reporting</span>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass">
-                        <span class="date">January 2021 - November 2022</span>
-                        <h3>Site Manager</h3>
-                        <h4>Prapancha Associates - Kerala</h4>
-                        <ul class="experience-list">
-                            <li>Orchestrated daily construction site operations, maintaining strict oversight of project scheduling, budget tracking, and resource allocation.</li>
-                            <li>Conducted comprehensive site visits and structural assessments to provide strategic engineering solutions for building renovations and repairs.</li>
-                            <li>Executed detailed site surveys and developed precise topographic plans that served as the foundation for critical architectural and design decisions.</li>
-                            <li>Designed and implemented an uncompromising safety program that enforced strict on-site protocols, successfully resulting in zero workplace injuries.</li>
-                            <li>Led on-site investigations and evidence gathering to proactively mitigate structural risks and resolve engineering challenges.</li>
+
+                <!-- Experience 3 -->
+                <div class="timeline-item reveal-up" style="--delay: 0.2s">
+                    <div class="tl-marker">
+                        <div class="tl-dot"><i class="fa-solid fa-helmet-safety"></i></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card glass-card">
+                        <div class="tl-card-header">
+                            <div>
+                                <span class="tl-date"><i class="fa-regular fa-calendar"></i> 01/2021 – 11/2022</span>
+                                <h3>Site Manager</h3>
+                                <h4><i class="fa-solid fa-location-dot"></i> Prapancha Associates · Kerala, India</h4>
+                            </div>
+                        </div>
+                        <ul class="tl-bullets">
+                            <li>Managed residential and commercial construction projects, ensuring timely execution within scope, quality, and budget requirements.</li>
+                            <li>Supervised site operations, workforce activities, and daily progress to ensure efficient project delivery.</li>
+                            <li>Coordinated with subcontractors, suppliers, consultants, architects, and clients for smooth project execution and issue resolution.</li>
+                            <li>Conducted site inspections, surveys, and quality assurance checks to ensure compliance with engineering standards and specifications.</li>
+                            <li>Prepared project progress reports, technical documentation, and maintained accurate project records and schedules.</li>
+                            <li>Implemented site safety procedures, monitored compliance, and ensured strong safety performance across project sites.</li>
                         </ul>
+                        <div class="tl-tags">
+                            <span>Site Management</span><span>Construction Supervision</span><span>Quality Assurance</span><span>Site Inspections</span><span>Safety Protocols</span>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass">
-                        <span class="date">January 2018 - December 2020</span>
-                        <h3>Draughtsman cum Office Admin</h3>
-                        <h4>Mass Engineering - Mumbai</h4>
-                        <ul class="experience-list">
-                            <li>Utilized advanced CAD software and sophisticated modeling tools to draft both conceptual sketches and highly detailed technical drawings for ongoing projects.</li>
-                            <li>Calculated exact material requirements and spatial dimensions, clearly outlining the construction processes directly onto the technical blueprints.</li>
-                            <li>Provided essential technical support and managed critical project documentation, enabling the engineering team to operate at peak efficiency.</li>
-                            <li>Oversaw daily administrative operations, managing office equipment maintenance and optimizing inventory procurement processes.</li>
+
+                <!-- Experience 4 -->
+                <div class="timeline-item reveal-up" style="--delay: 0.3s">
+                    <div class="tl-marker">
+                        <div class="tl-dot"><i class="fa-solid fa-pen-ruler"></i></div>
+                    </div>
+                    <div class="tl-card glass-card">
+                        <div class="tl-card-header">
+                            <div>
+                                <span class="tl-date"><i class="fa-regular fa-calendar"></i> 01/2018 – 12/2020</span>
+                                <h3>Draughtsman Cum Office Administrator</h3>
+                                <h4><i class="fa-solid fa-location-dot"></i> Mass Engineering · Mumbai, India</h4>
+                            </div>
+                        </div>
+                        <ul class="tl-bullets">
+                            <li>Prepared technical drawings, layouts, and design revisions using AutoCAD in accordance with project specifications and standards.</li>
+                            <li>Assisted engineering teams with project documentation, drawing reviews, and compliance verification against technical requirements.</li>
+                            <li>Performed quantity take-offs and material calculations to support project planning and execution.</li>
+                            <li>Maintained accurate project records, technical documentation, and document control systems for efficient information management.</li>
+                            <li>Coordinated suppliers, vendors, and office resources while supporting daily administrative and operational activities.</li>
+                            <li>Assisted in project tracking, progress reporting, and overall coordination to support timely project delivery.</li>
                         </ul>
+                        <div class="tl-tags">
+                            <span>AutoCAD Drafting</span><span>Technical Layouts</span><span>Quantity Take-offs</span><span>Document Control</span><span>Office Administration</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ===== SKILLS SECTION ===== -->
     <section id="skills" class="section">
         <div class="container">
-            <div class="section-title">
-                <h2>Core Expertise</h2>
-                <div class="line"></div>
+            <div class="section-header">
+                <div class="section-tag">What I Do</div>
+                <h2 class="section-heading">Core Expertise</h2>
+                <p class="section-subheading">A comprehensive skill set mapping project scheduling, survey operations, and regulatory permits.</p>
             </div>
+
+            <!-- Skills Cards -->
             <div class="skills-grid">
-                <div class="skill-card glass">
-                    <i class="fa-solid fa-pen-ruler"></i>
-                    <h3>AutoCAD & Revit</h3>
-                    <p>Advanced proficiency in 2D drafting and 3D BIM modeling for precise architectural and structural plans.</p>
+                <div class="skill-card glass-card reveal-up" style="--delay: 0s">
+                    <div class="sk-icon-wrap" style="--c: #0ea5e9"><i class="fa-solid fa-diagram-project"></i></div>
+                    <h3>Project &amp; Survey Management</h3>
+                    <p>End-to-end project coordination, survey project planning, resource scheduling, stakeholder communication, and client relationship management.</p>
+                    <div class="sk-bar-wrap"><div class="sk-bar" style="--pct: 95%"></div></div>
+                    <span class="sk-pct">Expert</span>
                 </div>
-                <div class="skill-card glass">
-                    <i class="fa-solid fa-cubes"></i>
-                    <h3>Structural Analysis</h3>
-                    <p>Expertise in SAP2000, ETABS, and manual calculations to ensure structural integrity and load-bearing capacity.</p>
+                <div class="skill-card glass-card reveal-up" style="--delay: 0.1s">
+                    <div class="sk-icon-wrap" style="--c: #f59e0b"><i class="fa-solid fa-file-contract"></i></div>
+                    <h3>Technical &amp; Documentation</h3>
+                    <p>Authoring detailed survey reports (Topographic, Demarcation, Gate Level, Control Points), document control, QA/QC, and commercial quotations.</p>
+                    <div class="sk-bar-wrap"><div class="sk-bar" style="--pct: 93%"></div></div>
+                    <span class="sk-pct">Expert</span>
                 </div>
-                <div class="skill-card glass">
-                    <i class="fa-solid fa-helmet-safety"></i>
-                    <h3>Project Management</h3>
-                    <p>Efficiently managing timelines, budgets, and site safety protocols to deliver projects on schedule.</p>
+                <div class="skill-card glass-card reveal-up" style="--delay: 0.2s">
+                    <div class="sk-icon-wrap" style="--c: #10b981"><i class="fa-solid fa-helmet-safety"></i></div>
+                    <h3>Permits &amp; Regulatory Coordination</h3>
+                    <p>Expertise in handling approvals through the ECM system, coordinating control point establishment with Dubai Municipality, and managing permits.</p>
+                    <div class="sk-bar-wrap"><div class="sk-bar" style="--pct: 94%"></div></div>
+                    <span class="sk-pct">Expert</span>
                 </div>
-                <div class="skill-card glass">
-                    <i class="fa-solid fa-leaf"></i>
-                    <h3>Sustainable Design</h3>
-                    <p>Incorporating eco-friendly materials and energy-efficient practices into modern infrastructure.</p>
+            </div>
+
+            <!-- Tools Proficiency -->
+            <div class="tools-section reveal-up" style="--delay: 0.2s">
+                <h3 class="tools-heading">Software &amp; Digital Tools</h3>
+                <div class="tools-grid">
+                    <div class="tool-badge"><i class="fa-solid fa-drafting-compass"></i> AutoCAD</div>
+                    <div class="tool-badge"><i class="fa-solid fa-list-check"></i> Monday.com</div>
+                    <div class="tool-badge"><i class="fa-solid fa-table"></i> Microsoft Excel</div>
+                    <div class="tool-badge"><i class="fa-solid fa-file-word"></i> Microsoft Word</div>
+                    <div class="tool-badge"><i class="fa-solid fa-desktop"></i> Microsoft Office Suite</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ===== PROJECTS SECTION ===== -->
     <section id="projects" class="section dark-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Featured Projects</h2>
-                <div class="line"></div>
+            <div class="section-header">
+                <div class="section-tag">Portfolio</div>
+                <h2 class="section-heading">Featured Projects</h2>
+                <p class="section-subheading">A selection of survey and site execution landmarks delivered with precision.</p>
             </div>
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="project-card">
+                <div class="project-card reveal-up" style="--delay: 0s">
                     <div class="project-img">
-                        <img src="assets/bridge_project.png" alt="Suspension Bridge Project">
+                        <img src="assets/bridge_project.png" alt="Infrastructure Surveys">
                         <div class="project-overlay">
-                            <a href="#" class="view-btn"><i class="fa-solid fa-arrow-right"></i> View Details</a>
+                            <div class="overlay-content">
+                                <span class="overlay-category">Survey Coordination</span>
+                                <h3>AD Ports Group Operations</h3>
+                                <p>End-to-end survey project planning and control point establishment.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="project-info">
-                        <span class="category">Infrastructure</span>
-                        <h3>Harbor Suspension Bridge</h3>
-                        <p>Lead structural engineer for a 1.2km suspension bridge, optimizing cable tension and wind resistance.</p>
+                        <div class="project-meta">
+                            <span class="project-category"><i class="fa-solid fa-tag"></i> Infrastructure</span>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <h3>AD Ports Group Operations</h3>
+                        <p>Coordinated survey operations, gate-level Fixing, and control point approvals. Managed compliance with governmental standards.</p>
+                        <div class="project-tags">
+                            <span>Topographic Survey</span><span>Control Points</span><span>Permits</span>
+                        </div>
                     </div>
                 </div>
+
                 <!-- Project 2 -->
-                <div class="project-card">
+                <div class="project-card reveal-up" style="--delay: 0.15s">
                     <div class="project-img">
-                        <img src="assets/building_project.png" alt="Commercial Skyscraper">
+                        <img src="assets/building_project.png" alt="Commercial Developments">
                         <div class="project-overlay">
-                            <a href="#" class="view-btn"><i class="fa-solid fa-arrow-right"></i> View Details</a>
+                            <div class="overlay-content">
+                                <span class="overlay-category">Residential &amp; Commercial</span>
+                                <h3>Sobha Realty &amp; Dubai Holding</h3>
+                                <p>Site survey mobilization, demarcation, and gate level fixing coordination.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="project-info">
-                        <span class="category">Commercial</span>
-                        <h3>Horizon Towers</h3>
-                        <p>Designed the steel framework for a 40-story commercial building, ensuring earthquake resilience.</p>
+                        <div class="project-meta">
+                            <span class="project-category"><i class="fa-solid fa-tag"></i> Commercial</span>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <h3>Sobha Realty &amp; Dubai Holding</h3>
+                        <p>Orchestrated survey team coordination, client progress documentation, and ECM approvals across multiple high-priority development sectors.</p>
+                        <div class="project-tags">
+                            <span>Demarcation</span><span>ECM approvals</span><span>Monday.com</span>
+                        </div>
                     </div>
                 </div>
+
                 <!-- Project 3 -->
-                <div class="project-card">
+                <div class="project-card reveal-up" style="--delay: 0.3s">
                     <div class="project-img">
-                        <img src="assets/blueprint_project.png" alt="Structural Blueprint">
+                        <img src="assets/blueprint_project.png" alt="Technical Drafting">
                         <div class="project-overlay">
-                            <a href="#" class="view-btn"><i class="fa-solid fa-arrow-right"></i> View Details</a>
+                            <div class="overlay-content">
+                                <span class="overlay-category">Technical Drafting</span>
+                                <h3>Ethara &amp; Ducto Projects</h3>
+                                <p>Detailed CAD design revisions, quantity calculations, and technical reports.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="project-info">
-                        <span class="category">Design</span>
-                        <h3>Urban Transit Hub</h3>
-                        <p>Comprehensive CAD drafting and load analysis for a modern metropolitan transit center.</p>
+                        <div class="project-meta">
+                            <span class="project-category"><i class="fa-solid fa-tag"></i> CAD Design</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <h3>Ethara &amp; Ducto Projects</h3>
+                        <p>Executed quantity take-offs, blueprint revisions, and compiled detailed survey reports meeting rigorous QA/QC metrics for final project handovers.</p>
+                        <div class="project-tags">
+                            <span>AutoCAD</span><span>Take-offs</span><span>Report Preparation</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
+    <!-- ===== EDUCATION & CREDENTIALS SECTION ===== -->
+    <section id="education" class="section">
         <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <div class="line"></div>
+            <div class="section-header">
+                <div class="section-tag">Qualifications &amp; Skills</div>
+                <h2 class="section-heading">Education &amp; Credentials</h2>
+                <p class="section-subheading">Academic credentials and multilingual capabilities.</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p>New York, NY</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa-solid fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>archanasivan97@outlook.com</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>0565977806</p>
-                        </div>
+            <div class="cred-grid">
+                <div class="cred-card glass-card reveal-up" style="--delay: 0s">
+                    <div class="cred-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="cred-body">
+                        <span class="cred-type">Academic Diploma</span>
+                        <h3>Diploma in Civil Engineering</h3>
+                        <p class="cred-inst">Institute Of Specialized Engineering &amp; Technology, Kerala <br><em>Arunachal University</em></p>
+                        <span class="cred-year">2014 – 2017</span>
                     </div>
                 </div>
-                <form class="contact-form glass">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+                <div class="cred-card glass-card reveal-up" style="--delay: 0.1s">
+                    <div class="cred-icon"><i class="fa-solid fa-language"></i></div>
+                    <div class="cred-body">
+                        <span class="cred-type">Languages</span>
+                        <h3>English</h3>
+                        <p class="cred-inst">Professional working proficiency</p>
+                        <span class="cred-year">Fluent</span>
                     </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="cred-card glass-card reveal-up" style="--delay: 0.2s">
+                    <div class="cred-icon"><i class="fa-solid fa-language"></i></div>
+                    <div class="cred-body">
+                        <span class="cred-type">Languages</span>
+                        <h3>Malayalam &amp; Hindi</h3>
+                        <p class="cred-inst">Native &amp; bilingual communication</p>
+                        <span class="cred-year">Fluent</span>
                     </div>
-                    <div class="form-group">
-                        <textarea rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <div class="cred-card glass-card reveal-up" style="--delay: 0.3s">
+                    <div class="cred-icon"><i class="fa-solid fa-language"></i></div>
+                    <div class="cred-body">
+                        <span class="cred-type">Languages</span>
+                        <h3>Tamil</h3>
+                        <p class="cred-inst">Conversational communication</p>
+                        <span class="cred-year">Intermediate</span>
                     </div>
-                    <button type="submit" class="btn-primary">Send Message</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="section dark-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Let's Build Together</div>
+                <h2 class="section-heading">Get In Touch</h2>
+                <p class="section-subheading">Ready to discuss project coordination or survey operations? Let's connect.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info-col reveal-left">
+                    <div class="contact-info-card glass-card">
+                        <h3>Contact Information</h3>
+                        <p>Whether you have a project in mind or just want to connect — my inbox is always open.</p>
+                        <div class="contact-items">
+                            <div class="contact-item">
+                                <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div>
+                                    <h4>Location</h4>
+                                    <p>Al Quoz, Dubai, United Arab Emirates</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <a href="mailto:archanasivan97@outlook.com">archanasivan97@outlook.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <a href="tel:+971565977806">+971 565 977 806</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-socials">
+                            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="mailto:archanasivan97@outlook.com" class="social-btn" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+                            <a href="tel:+971565977806" class="social-btn" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-col reveal-right">
+                    <form class="contact-form glass-card" id="contact-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="john@company.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Project Inquiry / Collaboration">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit" id="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-icon"><i class="fa-solid fa-paper-plane"></i></span>
+                        </button>
+                        <div class="form-success" id="form-success">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Message sent! I'll get back to you shortly.</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
     <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <i class="fa-solid fa-compass-drafting"></i> Archana.Portfolio
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <a href="#hero" class="logo">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                    <span>Archana<em>.eng</em></span>
+                </a>
+                <p>Civil Engineer specializing in Project Coordination, Survey Operations,<br>and Construction Site Management.</p>
             </div>
-            <div class="social-links">
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Expertise</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
             </div>
-            <p>&copy; 2026 Archana Sivan Pillai. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:archanasivan97@outlook.com" class="social-btn" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Archana Sivan Pillai. All rights reserved. Crafted with <i class="fa-solid fa-heart"></i> in Dubai.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <!-- Custom JS -->
     <script src="script.js"></script>
