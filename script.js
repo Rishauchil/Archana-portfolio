@@ -244,15 +244,16 @@ function initParticlesCanvas() {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
-    let width = (canvas.width = canvas.offsetWidth);
-    let height = (canvas.height = canvas.offsetHeight);
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
 
     const particles = [];
-    const maxParticles = 60;
-    const connectionDist = 120;
+    const maxParticles = 80;
+    const connectionDist = 125;
 
     class Particle {
         constructor() {
+            // Spawn uniformly across the entire screen area
             this.x = Math.random() * width;
             this.y = Math.random() * height;
             this.vx = (Math.random() - 0.5) * 0.4;
@@ -264,7 +265,7 @@ function initParticlesCanvas() {
             this.x += this.vx;
             this.y += this.vy;
 
-            // Bounce off edges
+            // Bounce off boundaries to keep them inside the screen area
             if (this.x < 0 || this.x > width) this.vx *= -1;
             if (this.y < 0 || this.y > height) this.vy *= -1;
         }
@@ -272,7 +273,7 @@ function initParticlesCanvas() {
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(59, 130, 246, 0.4)';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
             ctx.fill();
         }
     }
@@ -303,9 +304,9 @@ function initParticlesCanvas() {
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
                     // Fade lines out as they get further apart
-                    const alpha = (1 - dist / connectionDist) * 0.15;
-                    ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
-                    ctx.lineWidth = 0.8;
+                    const alpha = (1 - dist / connectionDist) * 0.3;
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+                    ctx.lineWidth = 0.85;
                     ctx.stroke();
                 }
             }
@@ -318,8 +319,8 @@ function initParticlesCanvas() {
 
     // Resize listener
     window.addEventListener('resize', () => {
-        width = canvas.width = canvas.offsetWidth;
-        height = canvas.height = canvas.offsetHeight;
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
     });
 }
 
